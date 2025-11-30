@@ -21,6 +21,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import com.contactsapp.components.ScrollContent
 import com.contactsapp.components.TopBar
 import com.contactsapp.ui.theme.ContactsAppTheme
@@ -39,11 +42,11 @@ class MainActivity : ComponentActivity() {
                             shape = CircleShape,
                             containerColor = Color(0xFF00B2FF),
                             contentColor = Color.White,
-                        ){
-                                Icon(
-                                    imageVector = Icons.Filled.Add,
-                                    contentDescription = "Add new contact"
-                                )
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Add,
+                                contentDescription = "Add new contact"
+                            )
 
                         }
 

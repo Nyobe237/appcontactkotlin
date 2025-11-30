@@ -21,27 +21,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.contactsapp.R
 
+val fontFamily = FontFamily(
+    Font(R.font.roboto_bold, FontWeight.Bold),
+    Font(R.font.roboto_medium, FontWeight.Medium)
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar() {
     TopAppBar(
-        title = { Text(text = "Contacts", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+        title = {
+            Text(
+                text = "Contacts",
+                fontSize = 20.sp,
+                fontFamily = fontFamily,
+                fontWeight = FontWeight.Medium
+            )
+        },
         modifier = Modifier.shadow(6.dp),
         actions = {
             IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Filled.Search,
+                    tint = Color(0xFF323232),
                     contentDescription = "Search contact"
                 )
             }
             IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Filled.MoreVert,
+                    tint = Color(0xFF323232),
                     contentDescription = "More actions"
                 )
             }
@@ -54,5 +70,11 @@ fun TopBar() {
 fun ScrollContent(modifier: Modifier = Modifier) {
     Image(painter = painterResource(R.drawable.empty_box), contentDescription = "Empty box")
     Spacer(modifier = Modifier.height(15.dp))
-    Text(text = "You have no contacts yet", color = Color(0xFF666666), fontWeight = FontWeight.Bold)
+    Text(
+        text = "You have no contacts yet",
+        color = Color(0xFF666666),
+        fontSize = 16.sp,
+        fontFamily = fontFamily,
+        fontWeight = FontWeight.Medium
+    )
 }
