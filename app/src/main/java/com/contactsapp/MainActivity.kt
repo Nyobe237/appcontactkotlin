@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.contactsapp.components.ScrollContent
 import com.contactsapp.components.TopBar
+import com.contactsapp.screens.ContactList
 import com.contactsapp.ui.theme.ContactsAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,31 +35,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ContactsAppTheme {
-                Scaffold(
-                    topBar = { TopBar() },
-                    floatingActionButton = {
-                        FloatingActionButton(
-                            onClick = {},
-                            shape = CircleShape,
-                            containerColor = Color(0xFF00B2FF),
-                            contentColor = Color.White,
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.Add,
-                                contentDescription = "Add new contact"
-                            )
-
-                        }
-
-                    }) { innerPadding ->
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        ScrollContent(modifier = Modifier.padding(innerPadding))
-                    }
-                }
+                ContactList()
             }
         }
     }
