@@ -1,11 +1,15 @@
 package com.contactsapp.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
@@ -14,6 +18,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -27,10 +32,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.contactsapp.R
+import java.lang.reflect.Field
 
 val fontFamily = FontFamily(
     Font(R.font.roboto_bold, FontWeight.Bold),
-    Font(R.font.roboto_medium, FontWeight.Medium)
+    Font(R.font.roboto_medium, FontWeight.Medium),
+    Font(R.font.roboto_regular, FontWeight.Normal)
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,4 +84,32 @@ fun ScrollContent(modifier: Modifier = Modifier) {
         fontFamily = fontFamily,
         fontWeight = FontWeight.Medium
     )
+}
+
+@Composable
+fun TextField(title: String, fieldLabel: String){
+    Column {
+        Text(
+            text = title,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp
+        )
+        OutlinedTextField(
+            value = "",
+            onValueChange = {},
+            label = {
+                Text(
+                    text = fieldLabel,
+                    color = Color(0xFF9E9E9E),
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                )
+            },
+            modifier = Modifier.fillMaxWidth().background(Color(0xFFFAFAFA)),
+            shape = RoundedCornerShape(0.dp)
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+    }
 }
