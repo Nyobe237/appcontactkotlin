@@ -20,8 +20,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -31,6 +33,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
 import com.contactsapp.R
 import java.lang.reflect.Field
 
@@ -39,7 +42,34 @@ val fontFamily = FontFamily(
     Font(R.font.roboto_medium, FontWeight.Medium),
     Font(R.font.roboto_regular, FontWeight.Normal)
 )
+@Composable
+fun PopupMessage(text: String, content: String) {
+    Popup(
+        alignment = Alignment.Center,
+        onDismissRequest = { }
+    ) {
+        // Contenu du popup
 
+        Column {
+            Text(
+                "$text",
+                fontFamily = fontFamily,
+                fontWeight = FontWeight.Bold
+            )
+            Text("$content")
+            Row(modifier = Modifier.align(Alignment.End)) {
+                TextButton(onClick = {},) {
+                    Text("No",
+                        color = Color.Black)
+                }
+                TextButton(onClick = {}) {
+                    Text("Yes",
+                        color = Color.Red)
+                }
+            }
+        }
+    }
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar() {
