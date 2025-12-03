@@ -172,7 +172,7 @@ fun ViewContact() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewViewContact() {
     ViewContact()
