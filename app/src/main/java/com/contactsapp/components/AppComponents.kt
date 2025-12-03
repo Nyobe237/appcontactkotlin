@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
@@ -42,6 +43,7 @@ val fontFamily = FontFamily(
     Font(R.font.roboto_medium, FontWeight.Medium),
     Font(R.font.roboto_regular, FontWeight.Normal)
 )
+// coposant pour afficher le popup message
 @Composable
 fun PopupMessage(text: String, content: String) {
     Popup(
@@ -71,6 +73,7 @@ fun PopupMessage(text: String, content: String) {
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
+// composant topbar qui contient le titre "Contact" et l'icon de recherche et les trois piont
 @Composable
 fun TopBar() {
     TopAppBar(
@@ -101,8 +104,7 @@ fun TopBar() {
         }
     )
 }
-
-
+// composant pour la liste des contact
 @Composable
 fun ScrollContent(modifier: Modifier = Modifier) {
     Image(painter = painterResource(R.drawable.empty_box), contentDescription = "Empty box")
@@ -116,6 +118,7 @@ fun ScrollContent(modifier: Modifier = Modifier) {
     )
 }
 
+// composant pour champs de saisi
 @Composable
 fun TextField(title: String, fieldLabel: String){
     Column {
