@@ -1,16 +1,12 @@
 package com.contactsapp.screens
 
-import android.R
-import android.widget.ImageButton
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -18,9 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,12 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.contactsapp.components.CircularIcon
 import com.contactsapp.components.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -75,51 +68,52 @@ fun ViewContact() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(innerPadding)
+                .padding(15.dp)
                 .fillMaxSize()
         ) {
             Spacer(modifier = Modifier.height(30.dp))
+            IconButton(
+                onClick = { },
+                modifier = Modifier
+                    .size(200.dp) // Taille du bouton
+                    .padding(top = 30.dp)
+
+            ) {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = "Photo de profil",
+                    modifier = Modifier.fillMaxSize(),
+                    tint = Color.Gray
+                )
+            }
+            Row() {
                 IconButton(
                     onClick = { },
                     modifier = Modifier
-                        .size(250.dp) // Taille du bouton
+                        .size(60.dp) // Taille du bouton
                         .padding(top = 30.dp)
-
                 ) {
                     Icon(
-                        imageVector = Icons.Default.AccountCircle,
-                        contentDescription = "Photo de profil",
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "supprimer le contact",
                         modifier = Modifier.fillMaxSize(),
-                        tint = Color.Gray
+                        tint = Color.Black
                     )
                 }
-                Row() {
-                    IconButton(
-                        onClick = { },
-                        modifier = Modifier
-                            .size(60.dp) // Taille du bouton
-                            .padding(top = 30.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "supprimer le contact",
-                            modifier = Modifier.fillMaxSize(),
-                            tint = Color.Gray
-                        )
-                    }
-                    IconButton(
-                        onClick = { },
-                        modifier = Modifier
-                            .size(60.dp) // Taille du bouton
-                            .padding(top = 30.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Edit,
-                            contentDescription = "editer le contact",
-                            modifier = Modifier.fillMaxSize(),
-                            tint = Color.Gray
-                        )
-                    }
+                IconButton(
+                    onClick = { },
+                    modifier = Modifier
+                        .size(60.dp) // Taille du bouton
+                        .padding(top = 30.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "editer le contact",
+                        modifier = Modifier.fillMaxSize(),
+                        tint = Color.Black
+                    )
                 }
+            }
 
             Spacer(modifier = Modifier.height(40.dp))
             Text(
@@ -140,32 +134,34 @@ fun ViewContact() {
                     fontWeight = FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.width(90.dp))
-                Image(
+                CircularIcon(
                     imageVector = Icons.Default.Phone,
-                    contentDescription = "telephone",
-                    modifier = Modifier.size(30.dp)
+                    contentDescription = "Téléphone",
+                    background = Color(0xFF08AE2D)
                 )
                 Spacer(modifier = Modifier.width(20.dp))
-                Image(
+                CircularIcon(
                     imageVector = Icons.Default.MailOutline,
-                    contentDescription = "message",
-                    modifier = Modifier.size(30.dp)
+                    contentDescription = "Send message",
+                    background = Color(0xFFE9AD13)
                 )
             }
             Spacer(modifier = Modifier.height(30.dp))
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(
                     "daril@gmail.com ",
                     fontSize = 20.sp,
                     fontFamily = fontFamily,
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.Medium
                 )
-                Spacer(modifier = Modifier.width(130.dp))
-                Image(
-                    imageVector = Icons.Default.Email,
-                    contentDescription = "email",
-                    modifier = Modifier.size(30.dp),
-                    
+                CircularIcon(
+                    imageVector = Icons.Default.MailOutline,
+                    contentDescription = "Send mail",
+                    background = Color(0xFF434040)
                 )
             }
         }

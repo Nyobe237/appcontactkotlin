@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -81,14 +82,18 @@ fun AddContact() {
                 )
         ) {
             Spacer(modifier = Modifier.height(30.dp))
-            Button(
-                onClick = {},
-                colors = ButtonDefaults.buttonColors(Color(0xFFE8E7E7)),
+            IconButton(
+                onClick = { },
+                modifier = Modifier
+                    .size(250.dp) // Taille du bouton
+                    .padding(top = 30.dp)
+
             ) {
-                Image(
+                Icon(
                     painter = painterResource(R.drawable.camera),
-                    contentDescription = "Add image icon",
-                    modifier = Modifier.padding(10.dp)
+                    contentDescription = "Photo de profile",
+                    modifier = Modifier.fillMaxSize().size(25.dp),
+                    tint = Color.Gray
                 )
             }
             TextField(

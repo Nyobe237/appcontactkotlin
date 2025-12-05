@@ -1,5 +1,6 @@
 package com.contactsapp.components
 
+import android.accessibilityservice.GestureDescription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,9 +10,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,8 +27,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -33,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.contactsapp.R
 import java.lang.reflect.Field
+import java.util.Vector
 
 val fontFamily = FontFamily(
     Font(R.font.roboto_bold, FontWeight.Bold),
@@ -111,5 +118,21 @@ fun TextField(title: String, fieldLabel: String){
             shape = RoundedCornerShape(0.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
+    }
+}
+
+@Composable
+fun CircularIcon(imageVector: ImageVector, contentDescription: String, background: Color){
+    IconButton(onClick = {}) {
+        Icon(
+            imageVector = imageVector,
+            contentDescription = contentDescription,
+            modifier = Modifier
+                .size(40.dp)
+                .background(background)
+                .clip(CircleShape)
+                .padding(7.dp),
+            tint = Color.White,
+        )
     }
 }
