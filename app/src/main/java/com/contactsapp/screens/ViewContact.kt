@@ -32,13 +32,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.contactsapp.app.Routes
 import com.contactsapp.components.CircularIcon
 import com.contactsapp.components.fontFamily
+import com.contactsapp.mvvm.ContactViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ViewContact() {
-    Scaffold(
+fun ViewContact(
+    navController: NavHostController,
+    contactViewModel: ContactViewModel,
+    contactId: Int
+)
+ {
+     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
@@ -50,7 +58,7 @@ fun ViewContact() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {navController.navigate(Routes.ContactList.route)}) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             tint = Color(0xFF323232),
@@ -63,7 +71,8 @@ fun ViewContact() {
                 )
         }
     ) { innerPadding ->
-        Column(
+         val contact = contactViewModel.getContactById(contactId)
+         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -88,7 +97,7 @@ fun ViewContact() {
             }
             Row() {
                 IconButton(
-                    onClick = { },
+                    onClick = { contactViewModel.deleteContactById(contactId); navController.navigate(Routes.ContactList.route)},
                     modifier = Modifier
                         .size(60.dp) // Taille du bouton
                         .padding(top = 30.dp)
@@ -101,7 +110,7 @@ fun ViewContact() {
                     )
                 }
                 IconButton(
-                    onClick = { },
+                    onClick = {navController.navigate(Routes.AddContact.route) },
                     modifier = Modifier
                         .size(60.dp) // Taille du bouton
                         .padding(top = 30.dp)
@@ -117,7 +126,7 @@ fun ViewContact() {
 
             Spacer(modifier = Modifier.height(40.dp))
             Text(
-                "Anthony Omam",
+                "${contact?.name} ${contact?.surname}",
                 fontSize = 25.sp,
                 fontFamily = fontFamily,
                 fontWeight = FontWeight.Bold
@@ -128,11 +137,12 @@ fun ViewContact() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "+237 678 90 12 34",
+                    contact?.phone ?: "000 000 000",
                     fontSize = 20.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight.Medium
                 )
+
                 Spacer(modifier = Modifier.width(90.dp))
                 CircularIcon(
                     imageVector = Icons.Default.Phone,
@@ -153,11 +163,12 @@ fun ViewContact() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    "daril@gmail.com ",
+                    contact?.email ?: "No email",
                     fontSize = 20.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight.Medium
                 )
+
                 CircularIcon(
                     imageVector = Icons.Default.MailOutline,
                     contentDescription = "Send mail",
@@ -166,10 +177,4 @@ fun ViewContact() {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewViewContact() {
-    ViewContact()
 }
