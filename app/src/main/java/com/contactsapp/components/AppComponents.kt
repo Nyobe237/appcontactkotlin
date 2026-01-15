@@ -1,17 +1,27 @@
 package com.contactsapp.components
 
+import android.accessibilityservice.GestureDescription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,60 +30,34 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
+import androidx.navigation.NavHostController
 import com.contactsapp.R
+import com.contactsapp.app.Routes
+import com.contactsapp.mvvm.Contact
 import java.lang.reflect.Field
+import java.util.Vector
 
 val fontFamily = FontFamily(
     Font(R.font.roboto_bold, FontWeight.Bold),
     Font(R.font.roboto_medium, FontWeight.Medium),
     Font(R.font.roboto_regular, FontWeight.Normal)
 )
-// coposant pour afficher le popup message
-@Composable
-fun PopupMessage(text: String, content: String) {
-    Popup(
-        alignment = Alignment.Center,
-        onDismissRequest = { }
-    ) {
-        // Contenu du popup
 
-        Column {
-            Text(
-                "$text",
-                fontFamily = fontFamily,
-                fontWeight = FontWeight.Bold
-            )
-            Text("$content")
-            Row(modifier = Modifier.align(Alignment.End)) {
-                TextButton(onClick = {},) {
-                    Text("No",
-                        color = Color.Black)
-                }
-                TextButton(onClick = {}) {
-                    Text("Yes",
-                        color = Color.Red)
-                }
-            }
-        }
-    }
-}
 @OptIn(ExperimentalMaterial3Api::class)
-// composant topbar qui contient le titre "Contact" et l'icon de recherche et les trois piont
 @Composable
 fun TopBar() {
     TopAppBar(
@@ -104,33 +88,51 @@ fun TopBar() {
         }
     )
 }
-// composant pour la liste des contact
+
+
 @Composable
 fun ScrollContent(modifier: Modifier = Modifier) {
-    Image(painter = painterResource(R.drawable.empty_box), contentDescription = "Empty box")
-    Spacer(modifier = Modifier.height(15.dp))
-    Text(
-        text = "You have no contacts yet",
-        color = Color(0xFF666666),
-        fontSize = 16.sp,
-        fontFamily = fontFamily,
-        fontWeight = FontWeight.Medium
-    )
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(R.drawable.empty_box),
+            contentDescription = "Empty box"
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        Text(
+            text = "You have no contacts yet",
+            color = Color(0xFF666666),
+            fontSize = 16.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium
+        )
+    }
 }
 
-// composant pour champs de saisi
+
 @Composable
-fun TextField(title: String, fieldLabel: String){
+fun TextField(
+    title: String,
+    fieldLabel: String,
+    value: String,
+    onValueChange: (String) -> Unit
+) {
     Column {
         Text(
             text = title,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp
+            fontSize = 16.sp,
         )
+
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = value,
+            onValueChange = onValueChange,
             label = {
                 Text(
                     text = fieldLabel,
@@ -140,9 +142,79 @@ fun TextField(title: String, fieldLabel: String){
                     fontSize = 16.sp
                 )
             },
-            modifier = Modifier.fillMaxWidth().background(Color(0xFFFAFAFA)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFFAFAFA)),
             shape = RoundedCornerShape(0.dp)
         )
+
         Spacer(modifier = Modifier.height(20.dp))
     }
+}
+
+
+@Composable
+fun CircularIcon(imageVector: ImageVector, contentDescription: String, background: Color) {
+    IconButton(onClick = {}) {
+        Icon(
+            imageVector = imageVector,
+            contentDescription = contentDescription,
+            modifier = Modifier
+                .size(40.dp)
+                .background(background)
+                .clip(CircleShape)
+                .padding(7.dp),
+            tint = Color.White,
+        )
+    }
+}
+
+@Composable
+fun ContactItem(contact: Contact, navController: NavHostController) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 10.dp)
+            .clickable(onClick = {
+                navController.navigate(
+                    Routes.ViewContact.createRoute(contact.id)
+                )
+            })
+    ) {
+        IconButton(onClick = {}) {
+            Icon(
+                imageVector = Icons.Default.AccountCircle,
+                contentDescription = "Photo",
+                modifier = Modifier.size(100.dp, 100.dp)
+            )
+        }
+        Column(
+            modifier = Modifier
+                .weight(2f)
+                .padding(16.dp)
+        ) {
+            Text(
+                text = "${contact.name} ${contact.surname}",
+                fontFamily = fontFamily,
+                fontWeight = FontWeight.Medium,
+                fontSize = 16.sp
+            )
+
+            Text(
+                text = contact.phone,
+                color = Color.Gray,
+                fontSize = 14.sp
+            )
+        }
+        IconButton(onClick = {}) {
+            Icon(
+                imageVector = Icons.Default.Call,
+                contentDescription = "Call",
+                modifier = Modifier
+                    .size(25.dp, 25.dp)
+            )
+        }
+    }
+
 }
