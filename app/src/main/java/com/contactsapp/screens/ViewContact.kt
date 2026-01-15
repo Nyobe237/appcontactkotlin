@@ -24,6 +24,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -46,6 +50,8 @@ fun ViewContact(
     contactId: Int
 )
  {
+     var showDeleteDialog by remember { mutableStateOf(false) }
+
      Scaffold(
         topBar = {
             TopAppBar(
@@ -97,7 +103,7 @@ fun ViewContact(
             }
             Row() {
                 IconButton(
-                    onClick = { contactViewModel.deleteContactById(contactId); navController.navigate(Routes.ContactList.route)},
+                    onClick = { contactViewModel.deleteContactById(contactId); navController.navigate(Routes.ContactList.route) },
                     modifier = Modifier
                         .size(60.dp) // Taille du bouton
                         .padding(top = 30.dp)
