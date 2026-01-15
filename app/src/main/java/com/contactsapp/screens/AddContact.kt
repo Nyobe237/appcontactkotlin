@@ -109,14 +109,14 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
             IconButton(
                 onClick = { },
                 modifier = Modifier
-                    .size(250.dp) // Taille du bouton
+                    .size(100.dp) // Taille du bouton
                     .padding(top = 30.dp)
 
             ) {
                 Icon(
                     imageVector = Icons.Default.AccountCircle,
                     contentDescription = "Photo de profile",
-                    modifier = Modifier.fillMaxSize().size(25.dp),
+                    modifier = Modifier.fillMaxSize().size(10.dp),
                     tint = Color.Gray
                 )
             }
