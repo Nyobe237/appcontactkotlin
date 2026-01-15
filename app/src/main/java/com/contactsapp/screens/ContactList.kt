@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import com.contactsapp.components.ScrollContent
 import com.contactsapp.components.TopBar
 
@@ -44,4 +45,9 @@ fun ContactList(){
             ScrollContent(modifier = Modifier.padding(innerPadding))
         }
     }
+}
+@Preview
+@Composable
+fun Previewcon(){
+    ContactList()
 }
