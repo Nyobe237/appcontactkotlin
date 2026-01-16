@@ -89,6 +89,7 @@ fun EditContact(
                 actions = {
                     IconButton(
                         onClick = {
+                            contactViewModel.deleteContactById(contactId)
                             val contactToSave = Contact(
                                 id = contactId ?: System.currentTimeMillis().toInt(), // Réutilise l'ID existant ou en crée un nouveau
                                 name = name.trim(), // trim() pour enlever les espaces inutiles

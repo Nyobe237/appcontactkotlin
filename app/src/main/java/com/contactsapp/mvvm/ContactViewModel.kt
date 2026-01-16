@@ -14,7 +14,7 @@ class ContactViewModel : ViewModel() {
     fun getContactById(id: Int): Contact? {
         return contacts.find { it.id == id }
     }
-    fun deleteContactById(id: Int){
+    fun deleteContactById(id: Int?){
             _contacts.removeAll { it.id == id }
     }
 }
