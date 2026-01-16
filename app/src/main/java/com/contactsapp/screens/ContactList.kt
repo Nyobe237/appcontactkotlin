@@ -44,4 +44,6 @@ fun ContactList(){
             ScrollContent(modifier = Modifier.padding(innerPadding))
         }
     }
+
 }
+
