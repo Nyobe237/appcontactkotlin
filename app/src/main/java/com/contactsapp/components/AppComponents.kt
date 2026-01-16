@@ -42,6 +42,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -217,4 +218,17 @@ fun ContactItem(contact: Contact, navController: NavHostController) {
         }
     }
 
+}
+ @Composable
+ fun PopupMessage(){
+     Box(
+         modifier = Modifier.fillMaxSize(),
+         contentAlignment = Alignment.Center
+     ) {
+     }
+ }
+@Preview
+@Composable
+fun TopBarPreview() {
+    PopupMessage()
 }

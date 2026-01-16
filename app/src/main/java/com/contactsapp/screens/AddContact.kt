@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -168,8 +169,8 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 label = {
                     Row {
                     Icon(
-                        imageVector = Icons.Default.AccountCircle,
-                        contentDescription = "Photo de profile",
+                        imageVector = Icons.Default.Person,
+                        contentDescription = "Surname",
                         tint = Color.Gray
                     )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -191,8 +192,8 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 label = {
                     Row {
                         Icon(
-                            imageVector = Icons.Default.AccountCircle,
-                            contentDescription = "Photo de profile",
+                            imageVector = Icons.Default.Phone,
+                            contentDescription = "Phone number",
                             tint = Color.Gray
                         )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -218,7 +219,7 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                     Row {
                     Icon(
                         imageVector = Icons.Default.Email,
-                        contentDescription = "Photo de profile",
+                        contentDescription = "Email",
                         tint = Color.Gray
                     )
                     Spacer(modifier = Modifier.width(10.dp))
