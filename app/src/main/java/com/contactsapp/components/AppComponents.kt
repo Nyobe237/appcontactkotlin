@@ -1,15 +1,13 @@
 package com.contactsapp.components
 
-import android.accessibilityservice.GestureDescription
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,13 +17,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -50,8 +45,7 @@ import androidx.navigation.NavHostController
 import com.contactsapp.R
 import com.contactsapp.app.Routes
 import com.contactsapp.mvvm.Contact
-import java.lang.reflect.Field
-import java.util.Vector
+import com.contactsapp.mvvm.ContactViewModel
 
 val fontFamily = FontFamily(
     Font(R.font.roboto_bold, FontWeight.Bold),
@@ -221,37 +215,4 @@ fun ContactItem(contact: Contact, navController: NavHostController) {
 
 }
 
-@Composable
-fun PopupMessage() {
-    Popup( ) {
-        Column() {
-            Text(
-                "Delete contact",
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(9.dp))
-            Text(
-                "Are you sure you want to delete this contact",
-            )
-            Spacer(modifier = Modifier.height(9.dp))
-            Row(
 
-            )
-            {
-                Text("No")
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    "Yes",
-                    color = Color.Red
-                )
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-fun TopBarPreview() {
-    PopupMessage()
-}

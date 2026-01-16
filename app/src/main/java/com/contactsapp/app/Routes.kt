@@ -6,4 +6,7 @@ sealed class Routes(val route: String){
     object ViewContact : Routes("view_contact/{contactId}") {
         fun createRoute(contactId: Int) = "view_contact/$contactId"
     }
+    data object EditContact : Routes("EditContact"){
+        fun createRoute(contactId: Int) = "EditContact/$contactId"
+    }
 }
