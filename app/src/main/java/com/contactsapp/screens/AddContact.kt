@@ -64,7 +64,7 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
     var phone by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var scrollState = rememberScrollState()
-    val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    val isEmailValid = email.isEmpty() || Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
 
     Scaffold(
@@ -89,7 +89,7 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 },
                 actions = {
                     IconButton(onClick = {
-                        if (name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty()){
+                        if (name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid ){
                         contactViewModel.addContact(
                             Contact(
                                 id = System.currentTimeMillis().toInt(),
@@ -101,7 +101,7 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                         )}
                         navController.popBackStack()
 
-                    }, enabled = name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty()) {
+                    }, enabled = name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid) {
                         Icon(
                             imageVector = Icons.Filled.Done,
                             tint = Color(0xFF323232),
