@@ -4,11 +4,14 @@ import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -17,6 +20,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -135,9 +140,18 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 value = name,
                 onValueChange = { name = it },
                 label = {
+                    Row {
+                    Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Name",
+                    tint = Color.Gray
+                )
+                        Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = "Name")
-                }
+                }},
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(30.dp)
 
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -147,9 +161,18 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 value = surname,
                 onValueChange = { surname = it },
                 label = {
+                    Row {
+                    Icon(
+                        imageVector = Icons.Default.AccountCircle,
+                        contentDescription = "Photo de profile",
+                        tint = Color.Gray
+                    )
+                        Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = "Surname")
-                }
+                }},
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(30.dp)
 
 
             )
@@ -160,12 +183,22 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 value = phone,
                 onValueChange = { phone = it },
                 label = {
-                    Text(
-                        text = "Phone number")
+                    Row {
+                        Icon(
+                            imageVector = Icons.Default.AccountCircle,
+                            contentDescription = "Photo de profile",
+                            tint = Color.Gray
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(
+                            text = "Phone number")
+                    }
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal
-                    )
+                    ),
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(30.dp)
                 )
             Spacer(modifier = Modifier.height(10.dp))
 
@@ -173,12 +206,21 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 value = email,
                 onValueChange = { email = it },
                 label = {
+                    Row {
+                    Icon(
+                        imageVector = Icons.Default.Email,
+                        contentDescription = "Photo de profile",
+                        tint = Color.Gray
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = "Email")
-                },
+                }},
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Email),
-                isError = !isEmailValid && email.isNotEmpty()
+                isError = !isEmailValid && email.isNotEmpty(),
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(30.dp)
 
 
 
