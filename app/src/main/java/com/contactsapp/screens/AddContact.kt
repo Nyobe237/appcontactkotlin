@@ -88,6 +88,7 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 },
                 actions = {
                     IconButton(onClick = {
+                        if (name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty()){
                         contactViewModel.addContact(
                             Contact(
                                 id = System.currentTimeMillis().toInt(),
@@ -96,9 +97,10 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                                 phone = phone,
                                 email = email
                             )
-                        )
+                        )}
                         navController.popBackStack()
-                    }) {
+
+                    }, enabled = name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty()) {
                         Icon(
                             imageVector = Icons.Filled.Done,
                             tint = Color(0xFF323232),
