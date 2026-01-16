@@ -79,7 +79,7 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.navigate(Routes.ContactList.route)}) {
+                    IconButton(onClick = { navController.navigate(Routes.ContactList.route) }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             tint = Color(0xFF323232),
@@ -88,23 +88,29 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                     }
                 },
                 actions = {
-                    IconButton(onClick = {
-                        if (name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid ){
-                        contactViewModel.addContact(
-                            Contact(
-                                id = System.currentTimeMillis().toInt(),
-                                name = name,
-                                surname = surname,
-                                phone = phone,
-                                email = email
-                            )
-                        )}
-                        navController.popBackStack()
+                    IconButton(
+                        onClick = {
+                            if (name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid) {
+                                contactViewModel.addContact(
+                                    Contact(
+                                        id = System.currentTimeMillis().toInt(),
+                                        name = name,
+                                        surname = surname,
+                                        phone = phone,
+                                        email = email
+                                    )
+                                )
+                            }
+                            navController.popBackStack()
 
-                    }, enabled = name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid) {
+                        },
+                        enabled = name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid
+                    ) {
                         Icon(
                             imageVector = Icons.Filled.Done,
-                            tint = Color(0xFF323232),
+                            tint = if (name.isNotEmpty() && surname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && isEmailValid) Color(
+                                0xFF323232
+                            ) else Color.LightGray,
                             contentDescription = "Validation"
                         )
                     }
@@ -116,7 +122,8 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .fillMaxSize().verticalScroll(scrollState)
+                .fillMaxSize()
+                .verticalScroll(scrollState)
                 .padding(innerPadding)
                 .padding(
                     horizontal = 15.dp,
@@ -133,7 +140,9 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 Icon(
                     imageVector = Icons.Default.AccountCircle,
                     contentDescription = "Photo de profile",
-                    modifier = Modifier.fillMaxSize().size(25.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .size(25.dp),
                     tint = Color.Gray
                 )
             }
@@ -144,19 +153,20 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 onValueChange = { name = it },
                 label = {
                     Row {
-                    Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "Name",
-                    tint = Color.Gray
-                )
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = "Name",
+                            tint = Color.Gray
+                        )
                         Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = "Name")
-                }},
+                        Text(
+                            text = "Name"
+                        )
+                    }
+                },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30.dp),
                 singleLine = true
-
 
 
             )
@@ -168,15 +178,17 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 onValueChange = { surname = it },
                 label = {
                     Row {
-                    Icon(
-                        imageVector = Icons.Default.Person,
-                        contentDescription = "Surname",
-                        tint = Color.Gray
-                    )
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = "Surname",
+                            tint = Color.Gray
+                        )
                         Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = "Surname")
-                }},
+                        Text(
+                            text = "Surname"
+                        )
+                    }
+                },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30.dp),
                 singleLine = true
@@ -198,18 +210,19 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = "Phone number")
+                            text = "Phone number"
+                        )
                     }
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal
-                    ),
+                ),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30.dp),
                 singleLine = true
 
 
-                )
+            )
             Spacer(modifier = Modifier.height(10.dp))
 
             OutlinedTextField(
@@ -217,22 +230,29 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                 onValueChange = { email = it },
                 label = {
                     Row {
-                    Icon(
-                        imageVector = Icons.Default.Email,
-                        contentDescription = "Email",
-                        tint = Color.Gray
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = "Email")
-                }},
+                        Icon(
+                            imageVector = Icons.Default.Email,
+                            contentDescription = "Email",
+                            tint = Color.Gray
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(
+                            text = "Email"
+                        )
+                    }
+                },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email),
+                    keyboardType = KeyboardType.Email
+                ),
                 isError = !isEmailValid && email.isNotEmpty(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30.dp),
-                singleLine = true
-
+                singleLine = true,
+                supportingText = {
+                    if (isEmailValid) {
+                        Text(text = "Invalid email format")
+                    }
+                }
 
 
             )

@@ -176,7 +176,12 @@ fun EditContact(
                 isError = !isEmailValid, // Affiche une erreur si le format est incorrect
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30.dp),
-                singleLine = true
+                singleLine = true,
+                supportingText = {
+                    if (isEmailValid) {
+                        Text(text = "Invalid email format")
+                    }
+                }
             )
         }
     }
