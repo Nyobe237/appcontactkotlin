@@ -36,7 +36,7 @@ import com.contactsapp.mvvm.ContactViewModel
 fun EditContact(
     navController: NavHostController,
     contactViewModel: ContactViewModel,
-    contactId: Int? // L'ID est optionnel : null pour une création, non-null pour une édition
+    contactId: Int? // Id du contact à éditer
 ) {
     // 1. Utilisation de LaunchedEffect pour charger les données une seule fois
     // Cela évite de recharger les données à chaque recomposition de l'écran.

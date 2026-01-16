@@ -187,7 +187,11 @@ private fun ContactDetails(
                 )
             }
             IconButton(
-                onClick = { navController.navigate(Routes.EditContact.route + "/${contact.id}") },
+                onClick = {
+                    navController.navigate(
+                        Routes.EditContact.createRoute(contact.id)
+                    )
+                },
                 modifier = Modifier.size(56.dp)
             ) {
                 Icon(

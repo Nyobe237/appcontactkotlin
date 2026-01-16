@@ -15,6 +15,7 @@ import com.contactsapp.app.Routes
 import com.contactsapp.mvvm.ContactViewModel
 import com.contactsapp.screens.AddContact
 import com.contactsapp.screens.ContactList
+import com.contactsapp.screens.EditContact
 import com.contactsapp.screens.ViewContact
 import com.contactsapp.ui.theme.ContactsAppTheme
 
@@ -50,6 +51,7 @@ fun ScreenMain(){
                     type = NavType.IntType
                 }
             )
+
         ) { backStackEntry ->
 
             val contactId = backStackEntry.arguments?.getInt("contactId") ?: return@composable
@@ -60,6 +62,19 @@ fun ScreenMain(){
                 contactId = contactId
             )
         }
+        composable(
+            route = Routes.EditContact.route,
+            arguments = listOf(navArgument("contactId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val contactId = backStackEntry.arguments?.getInt("contactId")
+
+            EditContact(
+                navController = navController,
+                contactViewModel = contactViewModel,
+                contactId = contactId
+            )
+        }
+
 
     }
 }

@@ -66,22 +66,7 @@ fun TopBar() {
             )
         },
         modifier = Modifier.shadow(6.dp),
-        actions = {
-            IconButton(onClick = {}) {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    tint = Color(0xFF323232),
-                    contentDescription = "Search contact"
-                )
-            }
-            IconButton(onClick = {}) {
-                Icon(
-                    imageVector = Icons.Filled.MoreVert,
-                    tint = Color(0xFF323232),
-                    contentDescription = "More actions"
-                )
-            }
-        }
+
     )
 }
 
