@@ -153,7 +153,10 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                         text = "Name")
                 }},
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(30.dp)
+                shape = RoundedCornerShape(30.dp),
+                singleLine = true
+
+
 
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -174,7 +177,8 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                         text = "Surname")
                 }},
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(30.dp)
+                shape = RoundedCornerShape(30.dp),
+                singleLine = true
 
 
             )
@@ -200,7 +204,10 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                     keyboardType = KeyboardType.Decimal
                     ),
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(30.dp)
+                shape = RoundedCornerShape(30.dp),
+                singleLine = true
+
+
                 )
             Spacer(modifier = Modifier.height(10.dp))
 
@@ -222,7 +229,8 @@ fun AddContact(navController: NavHostController, contactViewModel: ContactViewMo
                     keyboardType = KeyboardType.Email),
                 isError = !isEmailValid && email.isNotEmpty(),
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(30.dp)
+                shape = RoundedCornerShape(30.dp),
+                singleLine = true
 
 
 
