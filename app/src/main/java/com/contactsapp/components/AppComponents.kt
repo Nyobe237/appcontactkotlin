@@ -45,6 +45,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
 import androidx.navigation.NavHostController
 import com.contactsapp.R
 import com.contactsapp.app.Routes
@@ -219,14 +220,36 @@ fun ContactItem(contact: Contact, navController: NavHostController) {
     }
 
 }
- @Composable
- fun PopupMessage(){
-     Box(
-         modifier = Modifier.fillMaxSize(),
-         contentAlignment = Alignment.Center
-     ) {
-     }
- }
+
+@Composable
+fun PopupMessage() {
+    Popup( ) {
+        Column() {
+            Text(
+                "Delete contact",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(9.dp))
+            Text(
+                "Are you sure you want to delete this contact",
+            )
+            Spacer(modifier = Modifier.height(9.dp))
+            Row(
+
+            )
+            {
+                Text("No")
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    "Yes",
+                    color = Color.Red
+                )
+            }
+        }
+    }
+}
+
 @Preview
 @Composable
 fun TopBarPreview() {
